@@ -80,7 +80,28 @@ public class MyHashTable<K, V> {
     }
 
 
-    public V remove (K key) {...}
+    public V remove(K key) {
+        int index = hash(key);
+        HashNode<K, V> currentNode = chainArray[index];
+        HashNode<K, V> prevNode = null;
+
+        while (currentNode != null) {
+            if (currentNode.key.equals(key)) {
+                if (prevNode == null) {
+                    chainArray[index] = currentNode.next;
+                } else {
+                    prevNode.next = currentNode.next;
+                }
+                size--;
+                return currentNode.value;
+            }
+            prevNode = currentNode;
+            currentNode = currentNode.next;
+        }
+
+        return null;
+    }
+
 
     public boolean contains (V value) {...}
 
