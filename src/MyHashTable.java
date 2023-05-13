@@ -30,7 +30,9 @@ public class MyHashTable<K, V> {
         size = 0;
     }
 
-    private int hash (K key) ...)
+    private int hash (K key) {
+        
+    }
 
     public void put (K key, V value) {...}
 
