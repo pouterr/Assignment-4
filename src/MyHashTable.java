@@ -130,4 +130,16 @@ public class MyHashTable<K, V> {
         return null;
     }
 
+    public void printChainSizes() {
+        for (int i = 0; i < M; i++) {
+            int bucketSize = 0;
+            HashNode<K, V> currentNode = chainArray[i];
+            while (currentNode != null) {
+                bucketSize++;
+                currentNode = currentNode.next;
+            }
+            System.out.println("Bucket " + i + ": " + bucketSize + " elements");
+        }
+    }
+
 }
