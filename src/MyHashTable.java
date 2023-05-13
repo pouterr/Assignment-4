@@ -117,5 +117,17 @@ public class MyHashTable<K, V> {
     }
 
 
-    public K getKey(V value) {...}
+    public K getKey(V value) {
+        for (int i = 0; i < M; i++) {
+            HashNode<K, V> currentNode = chainArray[i];
+            while (currentNode != null) {
+                if (currentNode.value.equals(value)) {
+                    return currentNode.key;
+                }
+                currentNode = currentNode.next;
+            }
+        }
+        return null;
+    }
+
 }
