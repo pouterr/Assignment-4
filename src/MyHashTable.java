@@ -103,7 +103,19 @@ public class MyHashTable<K, V> {
     }
 
 
-    public boolean contains (V value) {...}
+    public boolean contains(V value) {
+        for (int i = 0; i < M; i++) {
+            HashNode<K, V> currentNode = chainArray[i];
+            while (currentNode != null) {
+                if (currentNode.value.equals(value)) {
+                    return true;
+                }
+                currentNode = currentNode.next;
+            }
+        }
+        return false;
+    }
+
 
     public K getKey(V value) {...}
 }
