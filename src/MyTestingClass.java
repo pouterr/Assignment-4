@@ -9,7 +9,7 @@ public class MyTestingClass {
 
     @Override
     public int hashCode() {
-        return id % 10;
+        return id % 11;
     }
 
     public static void main(String[] args) {
@@ -23,6 +23,9 @@ public class MyTestingClass {
             table.put(key, value);
         }
 
+        table.printChainSizes();
     }
+
+
 }
 
