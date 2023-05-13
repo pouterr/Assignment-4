@@ -31,7 +31,7 @@ public class MyHashTable<K, V> {
     }
 
     private int hash (K key) {
-        
+        return key.hashCode();
     }
 
     public void put (K key, V value) {...}
