@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class MyHashTable<K, V> {
     private class HashNode<K, V> {
         private K key;
@@ -76,8 +78,10 @@ public class MyHashTable<K, V> {
             chainArray[index] = newNode; // No collision, add the new node directly
         } else {
             HashNode<K, V> currentNode = chainArray[index];
+
             while (currentNode.next != null) {
                 if (currentNode.key.equals(key)) {
+
                     currentNode.value = value; // Key already exists, update the value
                     return;
                 }
@@ -86,6 +90,7 @@ public class MyHashTable<K, V> {
 
             // Reached the end of the chain, add the new node
             if (currentNode.key.equals(key)) {
+                System.out.println(value);
                 currentNode.value = value; // Key already exists, update the value
             } else {
                 currentNode.next = newNode; // Append the new node at the end of the chain
@@ -104,10 +109,11 @@ public class MyHashTable<K, V> {
      */
     public V get(K key) {
         int index = hash(key);
+
         HashNode<K, V> currentNode = chainArray[index];
 
         while (currentNode != null) {
-            if (currentNode.key.equals(key)) {
+            if (index == this.hash(key)) {
                 return currentNode.value; // Key found, return the associated value
             }
             currentNode = currentNode.next;
@@ -195,5 +201,21 @@ public class MyHashTable<K, V> {
             System.out.println("Bucket " + i + ": " + bucketSize + " elements");
         }
     }
+
+
+
+    public void replace(K key, V oldValue, V newValue) {
+        int index = hash(key);
+        HashNode<K, V> currentNode = chainArray[index];
+
+        while (currentNode != null) {
+            if (currentNode.value.equals(oldValue)) {
+                currentNode.value = newValue; // Replace the value if key and oldValue match
+                return;
+            }
+            currentNode = currentNode.next;
+        }
+    }
+
 
 }

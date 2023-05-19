@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class MyTestingClass {
-    private int id;
+    public int id;
 
     /**
      * Constructs a MyTestingClass object with the given id.
@@ -19,22 +19,42 @@ public class MyTestingClass {
      */
     @Override
     public int hashCode() {
-        return id % 11; // Calculate the hash code by taking the remainder of id divided by 11
+        return this.id % 2; // Calculate the hash code by taking the remainder of id divided by 11
     }
 
     public static void main(String[] args) {
-        MyHashTable<MyTestingClass, String> table = new MyHashTable<>(); // Create an instance of MyHashTable
-        Random random = new Random(); // Create a Random object for generating random values
+//        MyHashTable<MyTestingClass, String> table = new MyHashTable<>(5); // Create an instance of MyHashTable
+//        Random random = new Random(); // Create a Random object for generating random values
+//
+//        // Add 10000 random elements to the hash table
+//        for (int i = 0; i < 2; i++) {
+//            MyTestingClass key = new MyTestingClass(i); // Create a new MyTestingClass object with a random id
+//            String value = "Value"; // Create a value string with the format "ValueX"
+//            table.put(key, value); // Add the key-value pair to the hash table
+//        }
+//        MyTestingClass key = new MyTestingClass(0);
+//        System.out.println(table.contains("Value"));
+//        System.out.println(table.get(key));
+        MyHashTable<MyTestingClass, String> hashTable = new MyHashTable<>();
+        hashTable.put(new MyTestingClass(1), "one");
+        hashTable.put(new MyTestingClass(2), "two");
 
-        // Add 10000 random elements to the hash table
-        for (int i = 0; i < 10000; i++) {
-            MyTestingClass key = new MyTestingClass(random.nextInt(100)); // Create a new MyTestingClass object with a random id
-            String value = "Value" + i; // Create a value string with the format "ValueX"
-            table.put(key, value); // Add the key-value pair to the hash table
-        }
 
-        table.printChainSizes(); // Print the sizes of the individual chains in the hash table
+        System.out.println("Before replace:");
+        System.out.println(hashTable.get(new MyTestingClass(1))); // Output: one
+        System.out.println(hashTable.get(new MyTestingClass(2))); // Output: two
+         // Output: three
+
+        hashTable.replace(new MyTestingClass(1), "one", "new value");
+
+        System.out.println("After replace:");
+        System.out.println(hashTable.get(new MyTestingClass(1))); // Output: one
+        System.out.println(hashTable.get(new MyTestingClass(2))); // Output: new value
+         // Output: three
+
+
     }
+
 }
 
 
